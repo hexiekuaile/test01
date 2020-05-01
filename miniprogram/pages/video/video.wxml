@@ -1,0 +1,6 @@
+<view class="main" wx:for="{{list}}" wx:key="{{index}}">
+	<view class="video" >
+    	<live-player src="{{item}}" class="video_video" id="v{{index}}" autoplay="{{true}}" mode="live" ></live-player>
+        <cover-view class='timeText1' >{{index}}: {{item}} </cover-view>
+	</view>
+</view>
