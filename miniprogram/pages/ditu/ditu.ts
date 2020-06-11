@@ -1,16 +1,17 @@
-var dituData = require("../../data/ditu.js");
+var externalData = require("data.js");
 Page({
   data: {
     markers: [],
     marker: {
-      id: 1,
-      longitude: 115.8325170000,
-      latitude: 32.8907140000,
-      name: '阜阳市环境监测站',
-      address: '阜阳市颍上路254号',
-      tel: '0558-2272162',
-      jieDaiNengLi: '50人',
-      scale: 8
+      "id": "jc01",
+      "type": "监测",
+      "longitude": 115.266900,
+      "latitude": 33.049593,
+      "name": "临泉县环境监测站",
+      "address": "临泉县港口路238号",
+      "tel": "0558-6288017",
+      "jieDaiNengLi": "10人",
+      "scale": 8
     },
     controls: [{
       id: 1,
@@ -28,7 +29,7 @@ Page({
   onLoad: function () {
     this.setData({
       isshow: true,
-      markers: dituData.markers
+      markers: externalData.markers
     });
   },
   //点击标记点，显示弹出框
@@ -37,7 +38,6 @@ Page({
       showModalStatus: true,
       marker: this.data.markers[event.markerId - 1]
     })
-    console.log(this.data.marker)
   },
   //点击页面，隐藏弹出框
   hideModal: function () {

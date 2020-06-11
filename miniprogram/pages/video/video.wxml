@@ -1,6 +1,8 @@
-<view class="main" wx:for="{{list}}" wx:key="{{index}}">
-	<view class="video" >
-    	<live-player src="{{item}}" class="video_video" id="v{{index}}" autoplay="{{true}}" mode="live" ></live-player>
-        <cover-view class='timeText1' >{{index}}: {{item}} </cover-view>
-	</view>
+<cover-view class="commodity_screen" wx:if="{{showLoadingStatus}}">
+	<cover-image class="loadingIcon" src='/images/loading.gif' />
+</cover-view>
+<view wx:for="{{videos}}" wx:key="unique" wx:if="{{!showLoadingStatus}}">
+	<video id="v{{index}}" src="{{item.src}}" style="width: 100%;height=400px;margin:1px;align:center"/>
+	<cover-view style="text-align:center;margin:5rpx 0rpx 40rpx 0px;">{{item.title}}</cover-view>
 </view>
+

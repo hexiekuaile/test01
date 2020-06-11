@@ -28,7 +28,8 @@
         "iconPath": "images/视频.png",
         "pagePath": "pages/video/video",
         "text": "视频"
-      }, {
+      },
+      {
         "selectedIconPath": "images/关于1.png",
         "iconPath": "images/关于.png",
         "pagePath": "pages/about/about",
