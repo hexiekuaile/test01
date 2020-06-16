@@ -125,7 +125,7 @@ page{
   line-height: 45rpx;
   margin-left: 12rpx;
   text-align: center;
-  width: 200rpx;
+  width: 130rpx;
   height: 45rpx;
   background-color: rgb(230, 234, 255);
   border-radius: 10px;
@@ -137,7 +137,7 @@ page{
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
-  margin-left: 110rpx;
+  margin-left: 20rpx;
   vertical-align: middle;
 }
  
@@ -153,7 +153,7 @@ page{
   display: inline-block;
   line-height: 45rpx;
   margin-left: 12rpx;
-  width: 100rpx;
+  width: 200rpx;
   height: 45rpx;
   color: #3F51B5;
   font-size: 24rpx;

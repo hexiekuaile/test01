@@ -1,18 +1,8 @@
-var externalData = require("data.js");
+import file1 = require("./data");
 Page({
   data: {
-    markers: [],
-    marker: {
-      "id": "jc01",
-      "type": "监测",
-      "longitude": 115.266900,
-      "latitude": 33.049593,
-      "name": "临泉县环境监测站",
-      "address": "临泉县港口路238号",
-      "tel": "0558-6288017",
-      "jieDaiNengLi": "10人",
-      "scale": 8
-    },
+    markers: file1.markers,
+    marker: new file1.Marker(1, '监测', 115.266900, 33.049593, '临泉县环境监测站', '临泉县港口路238号', '0558-6288017', 10),
     controls: [{
       id: 1,
       iconPath: '/images/mk.png',
@@ -29,7 +19,7 @@ Page({
   onLoad: function () {
     this.setData({
       isshow: true,
-      markers: externalData.markers
+      //markers: file1.mariks
     });
   },
   //点击标记点，显示弹出框
