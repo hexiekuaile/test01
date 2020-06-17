@@ -10,7 +10,7 @@ export class Video {
         this.getSrc();
     }
     getSrc() {
-        var that = this
+        let that = this
         wx.request({
             url: 'https://vv.video.qq.com/getinfo',
             data: {
@@ -36,7 +36,7 @@ export class Video {
                 //规律url + fn + '?vkey=' + fvkey 
                 let src = urll + fnn + "?vkey=" + fvkeyy;
                 that.src = src;
-                console.log(that.id + ' ' + that.title + ' ' + src)
+                // console.log(that.id + ' ' + that.title + ' ' + src)
             },
             fail(res) {
                 console.log(res.errMsg)

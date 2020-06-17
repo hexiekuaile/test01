@@ -20,14 +20,40 @@ export class Marker {
     this.scale = scale;
   }
 }
-export let markers: Marker[] = [
+export class Markers {
+  markers: Marker[] = [];
+  constructor() {
+    this.getMarkersFromNetFile();
+  };
+  getMarkersFromNetFile() {
+    let that = this
+    wx.request({
+      url: 'https://wss-1259372845.file.myqcloud.com/gifhbaf/2/sk/2skjgifhbaf?cdn_sign=1592383446-79-0-03f36187ee2e15deb2f4472034a897ba&response-content-disposition=attachment%3B%20filename%3D%22markers.json%22%3B%20filename%2A%3Dutf-8%27%27markers.json',
+      success(res) {
+        that.markers = (<Marker[]>res.data)
+        //console.log('getMarkersFromNetFile ' + that.markers.length)
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    });
+    //console.log(markers.length)
+    //return markers;
+  }
+}
+
+export let markers = new Markers();
+
+/* export let markers: Marker[] = [
   new Marker(1, '监测', 115.266900, 33.049593, '临泉县环境监测站', '临泉县港口路238号', '0558-6288017', 10),
   new Marker(2, '监测', 115.623710, 33.175151, '太和县环境监测站', '太和县人民北路与建设西路交口南侧', '15156830006', 20),
   new Marker(3, '监测', 115.343471, 33.265740, '界首市环境监测站', '界首市西城街道张庄西路30号附近（界首市颍河省界监测哨）', '0558-4827291', 40),
   new Marker(4, '监测', 115.593541, 32.640021, '阜南县环境监测站', '阜南县城关镇谷河路59号正北方向110米', '13855857699', 30),
   new Marker(5, '监测', 115.580851, 32.590329, '阜南县谷河水监测站（环保宣教基地）', '阜南县苗寺大桥南岸西侧400米', '13866277883', 30),
   new Marker(6, '监测', 115.832517, 32.890714, '阜阳市环境监测站', '阜阳市颍上路254号', '0558-2272162', 30),
-]
+] */
+
+
 /*
 var markers = [
   {

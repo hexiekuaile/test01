@@ -1,6 +1,6 @@
 //var externalData = require("data.js");
 import file1 = require("./data");
-import file2 = require('./data2')
+//import file2 = require('./data2')
 //import file2 = require("./videoURL");
 Page({
 
@@ -23,7 +23,7 @@ Page({
     that.setData({
       videos: file1.videos
     });
-    file2.getFile();
+   // file2.getFile();
   },
 
   /**

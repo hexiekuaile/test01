@@ -1,0 +1,5 @@
+<view wx:for="{{videos}}" wx:key="unique" wx:if="{{!showLoadingStatus}}">
+	<video id="v{{index}}" src="{{item.src}}" style="width: 100%;height=400px;margin:1px;align:center" />
+	<cover-view style="text-align:center;margin:5rpx 0rpx 40rpx 0px;">{{item.title}}</cover-view>
+</view>
+
