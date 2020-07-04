@@ -1,15 +1,14 @@
-import file1 = require("./data.js");
+import file1 = require("./dataLoc.js");
 Page({
   data: {
-    markers: [new file1.Marker(1, '监测', 115.266900, 33.049593, '临泉县环境监测站', '临泉县港口路238号', '0558-6288017', 10)],
+    // markers: [new file1.Marker(1, '监测', 115.266900, 33.049593, '临泉县环境监测站', '临泉县港口路238号', '0558-6288017', 10)],
+    markers: file1.markers,
     marker: new file1.Marker(1, '监测', 115.266900, 33.049593, '临泉县环境监测站', '临泉县港口路238号', '0558-6288017', 10),
     showModalStatus: false,
   },
   //初始化
   onLoad: function () {
-    this.setData({
-      markers: file1.markers.markers
-    });
+
   },
   /**
  * 生命周期函数--监听页面显示

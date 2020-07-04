@@ -1,2 +1,18 @@
-<!--pages/about/about.wxml-->
-<text>pages/about/about.wxml</text>
+<!-- pages/about/about.wxml -->
+<view class="parent">
+	<view class="bar">设施开放基本情况</view>
+	<view style="text-align: left;padding: 20rpx;">
+		<text space="emsp" selectable="{{true}}" class="txt">  2017年5月5日，原环境保护部与住房和城乡建设部联合下发《关于推进环保设施和城市污水垃圾处理设施向公众开放的指导意见》；同年，全国环保设施和城市污水垃圾处理设施向公众开放工作座谈会暨现场会在大连举行，对开放工作进行了具体部署。
+		  
+		  全国生态环境保护大会后，中共中央、国务院印发《关于全面加强生态环境保护 坚决打好污染防治攻坚战的意见》，明确提出“2020年年底前，地级及以上城市符合条件的环保设施和城市污水垃圾处理设施向社会开放，接受公众参观”。
+  
+  在生态环境部、住房和城乡建设部的着力推动下，及全社会的共同关注和支持下，各地环保部门积极行动，一批单位和企业主动践行社会责任，积极参与设施开放工作。</text>
+	</view>
+	<view class="bar">logo</view>
+	<image mode="aspectFit" class="img" src="/images/logo.jpg" />
+
+	<view class="bar">开发者</view>
+	<text space="emsp" selectable="{{true}}" class="txt">  15357668379（微信同号）</text>
+
+</view>
+

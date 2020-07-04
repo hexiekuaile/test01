@@ -1,3 +1,4 @@
+//用于网络提取数据文件
 export class Marker {
   id: number;
   type: string;
