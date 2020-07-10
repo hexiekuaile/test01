@@ -8,13 +8,14 @@
     display: inline-block;
     text-align: center;
     background-color: #f2f2f2;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1rpx solid #ccc;   
+    color: #6B8E23;
   }
   .txt {
     text-indent:2em;
   }
   .img {
     border-radius: 20rpx;
-    transform: scale(0.8);
+    transform: scale(0.9);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }

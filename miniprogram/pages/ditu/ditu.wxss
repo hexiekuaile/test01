@@ -125,7 +125,7 @@ page{
   line-height: 45rpx;
   margin-left: 12rpx;
   text-align: center;
-  width: 130rpx;
+  width: 230rpx;
   height: 45rpx;
   background-color: rgb(230, 234, 255);
   border-radius: 10px;
@@ -171,3 +171,15 @@ page{
 .btn-area{ width: 100%;}
 .btn_no{ float:left;width: 40%; margin-left: 5%;border: 0px;}
 .btn_ok{ float:left;width: 40%; margin-left: 10%;margin-right: 5%; border: 0px;}
+.infoImg {
+  border-radius: 20rpx;
+  transform: scale(0.9);
+} 
+.infoTxt{
+  display: block;
+  white-space:pre-line;
+  font-size: 28rpx;
+  color: gray;
+  margin-left: 20rpx;
+  padding-top: 20rpx;
+}

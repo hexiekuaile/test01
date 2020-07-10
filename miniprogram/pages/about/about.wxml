@@ -1,18 +1,29 @@
 <!-- pages/about/about.wxml -->
 <view class="parent">
-	<view class="bar">设施开放基本情况</view>
-	<view style="text-align: left;padding: 20rpx;">
-		<text space="emsp" selectable="{{true}}" class="txt">  2017年5月5日，原环境保护部与住房和城乡建设部联合下发《关于推进环保设施和城市污水垃圾处理设施向公众开放的指导意见》；同年，全国环保设施和城市污水垃圾处理设施向公众开放工作座谈会暨现场会在大连举行，对开放工作进行了具体部署。
+				<view class="bar">基本情况</view>
+				<view style="text-align: left;padding: 20rpx;">
+								<text space="emsp" selectable="{{true}}" class="txt">  2017年5月5日，原环境保护部与住房和城乡建设部联合下发《关于推进环保设施和城市污水垃圾处理设施向公众开放的指导意见》；同年，全国环保设施和城市污水垃圾处理设施向公众开放工作座谈会暨现场会在大连举行，对开放工作进行了具体部署。
 		  
 		  全国生态环境保护大会后，中共中央、国务院印发《关于全面加强生态环境保护 坚决打好污染防治攻坚战的意见》，明确提出“2020年年底前，地级及以上城市符合条件的环保设施和城市污水垃圾处理设施向社会开放，接受公众参观”。
   
-  在生态环境部、住房和城乡建设部的着力推动下，及全社会的共同关注和支持下，各地环保部门积极行动，一批单位和企业主动践行社会责任，积极参与设施开放工作。</text>
-	</view>
-	<view class="bar">logo</view>
-	<image mode="aspectFit" class="img" src="/images/logo.jpg" />
+  在生态环境部、住房和城乡建设部的着力推动下，及全社会的共同关注和支持下，各地环保部门积极行动，一批单位和企业主动践行社会责任，积极参与设施开放工作。
+  
+  阜阳市生态环境局自2018年起开展本项工作，截至2020年上半年，已开放23家设施单位，8县市区符合开放条件的环境监测站、城市污水处理厂、垃圾焚烧发电厂、废旧家电拆解企业等环保设施全部开放，在近几年的实践中，摸索总结了“四步法”开放工作流程，作为模板在全市进行推广，希望推动全市设施开放工作规范化运作。一是集中介绍开放单位的生产工艺、环保设施运行情况等，让参观者有总体认识；二是现场参观车间、工段，穿插介绍垃圾分类、珍惜用水、低碳生活等环保知识；三是提供十个环保问题，通过有奖竞答活跃气氛，提高活动的互动性；四是拉环保设施向公众开放字样的横幅，拍照留念，突出环保主题。同时，提倡在“四步法”基础上，因地制宜设计活动流程，例如，市环境监测站、阜南谷河环境宣教基地、大峰野再生资源有限公司加入“即兴绘画”环节，绘画作品在自建展厅永久展览，活动开展的有声有色，很有意义，深得学生、家长等参与人员的肯定和赞许。
 
-	<view class="bar">开发者</view>
-	<text space="emsp" selectable="{{true}}" class="txt">  15357668379（微信同号）</text>
-
+  目前，我市设施单位落实生态环境部、省生态环境厅要求，每两月开放一次，同时注重六五环境周、八月底开学环保第一课期间集中开放，在我局微信公众号公开设施单位预约电话等信息，全年接受参观预约，免费参观、普及环境保护知识。
+								</text>
+				</view>
+				<view class="bar">logo</view>
+				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/logo.jpg" />
+				<view class="bar">原创漫画</view>
+				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/wangge01.jpg" />
+				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/wangge02.jpg" />
+				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/jiancezan01.jpg" />
+				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/jiancezan02.jpg" />
+				<view class="bar">阜阳市生态环境局</view>
+				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/weixin.jpg" />
+				<text space="emsp" selectable="{{true}}" class="txt">\n 微信公众号 \n</text>
+				<text space="emsp" selectable="{{true}}" class="txt">\n 网站地址：sthj.fy.gov.cn \n\n</text>
+				<view class="bar">本小程序</view>
+				<text space="emsp" selectable="{{true}}" class="txt">版本：1.0.0，开发者：15357668379（微信同号）</text>
 </view>
-

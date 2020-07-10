@@ -1,55 +1,38 @@
-<map
- id="map"
- longitude="115.8325170000"
- latitude="32.8907140000"
- scale="8"
- include-points="{{markers}}"
- markers="{{markers}}"
- bindmarkertap="showModal"
- data-id="{{markers}}"
- bindregionchange="regionchange"
- show-location
- style="width: 100%; height: 100%;"
->
-	<!-- <cover-view class='index_bt1'>
+<map id="map" longitude="115.8325170000" latitude="32.8907140000" scale="8" include-points="{{markers}}" markers="{{markers}}" bindmarkertap="showModal" data-id="{{markers}}" bindregionchange="regionchange" show-location style="width: 100%; height: 100%;">
+				<!-- <cover-view class='index_bt1'>
       <cover-image class='xiaoer' bindtap="login" src="/images/mk.png" />
     </cover-view>
     <cover-view class='index_shuaxin'>
       <cover-image class='shuaxin' src="/images/mk.png" />
     </cover-view> -->
-	<!-- 屏幕背景变暗的背景 -->
-	<cover-view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}" />
-	<!-- 弹出框 -->
-	<cover-view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-		<cover-view class='placeBox'>
-			<cover-view class='placeViewLt'>
-				<cover-view class='viewTitle'>{{marker.name}}</cover-view>
-				<cover-view class='viewDis'>{{marker.address}}</cover-view>
-				<!-- <cover-view class='viewAddr'>{{marker.longitude}}</cover-view> -->
-			</cover-view>
-			<cover-view class='placeViewRt'>
-				<cover-image data-id="{{marker.id}}" bindtap="opendetail" src='/images/{{marker.type}}.png' />
-			</cover-view>
-		</cover-view>
-		<cover-view class='viewIcon'>
-			<cover-image class='indexIcon' src='/images/person.png' />
-			<cover-view class='timeText'>{{marker.jiedainengli}}人</cover-view>
-			<cover-image
-			 class='indexIcon1'
-			 data-id="{{marker.tel}}"
-			 src='/images/share.png'
-			 bindtap='calling'
-			/>
-			<cover-view class='timeText1' data-id="{{marker.tel}}" bindtap='calling'>
-				{{marker.tel}}
-			</cover-view>
-			<cover-image class='indexIcon2' src='/images/nav.png' bindtap='daohang' />
-			<cover-view class='timeText1' bindtap='daohang'>导航</cover-view>
-		</cover-view>
-		<scroll-view scroll-y="true" style="padding:20rpx;">
-			<cover-image id="a01" src="/images/001.jpg" style="margin-botton:20rpx" />
-			<cover-image id="a02" src="/images/002.jpg"  style="margin-botton:20rpx"  />
-		</scroll-view>
-	</cover-view>
+				<!-- 屏幕背景变暗的背景 -->
+				<cover-view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}" />
+				<!-- 弹出框 -->
+				<cover-view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+								<cover-view class='placeBox'>
+												<cover-view class='placeViewLt'>
+																<cover-view class='viewTitle'>{{marker.name}}</cover-view>
+																<cover-view class='viewDis'>{{marker.address}}</cover-view>
+																<!-- <cover-view class='viewAddr'>{{marker.longitude}}</cover-view> -->
+												</cover-view>
+												<cover-view class='placeViewRt'>
+																<cover-image data-id="{{marker.id}}" bindtap="opendetail" src='/images/{{marker.type}}.png' />
+												</cover-view>
+								</cover-view>
+								<cover-view class='viewIcon'>
+												<cover-image class='indexIcon' src='/images/person.png' />
+												<cover-view class='timeText'>接待能力 {{marker.jiedainengli}}人</cover-view>
+												<cover-image class='indexIcon1' data-id="{{marker.tel}}" src='/images/share.png' bindtap='calling' />
+												<cover-view class='timeText1' data-id="{{marker.tel}}" bindtap='calling'>
+																{{marker.tel}}
+												</cover-view>
+												<cover-image class='indexIcon2' src='/images/nav.png' bindtap='daohang' />
+												<cover-view class='timeText1' bindtap='daohang'>导航</cover-view>
+								</cover-view>
+								<cover-view style="padding:20rpx;">
+												<cover-view class='infoTxt'>{{marker.info}}</cover-view>
+												<cover-image class="infoImg" src='/images/info/{{marker.id}}1.jpg' style="margin-bottom:20rpx" />
+												<cover-image class="infoImg" src='/images/info/{{marker.id}}2.jpg' style="margin-bottom:20rpx" />
+								</cover-view>
+				</cover-view>
 </map>
-
