@@ -1,35 +1,71 @@
-import file1 = require("./dataLoc.js");
+import dataFromNet = require("./dataFromNet");                                                //导入请求网络数据代码文件
+
 Page({
   data: {
-    // markers: [new file1.Marker(1, '监测', 115.266900, 33.049593, '临泉县环境监测站', '临泉县港口路238号', '0558-6288017', 10)],
-    markers: file1.markers,
-    marker: new file1.Marker(1, '监测', 115.266900, 33.049593, '临泉县环境监测站', '临泉县港口路238号', '0558-6288017', 10),
-    showModalStatus: false,
+    markersSimple: <dataFromNet.MarkerSimple[]>[],                            //初始化地图标记点简单信息数组，空数组，页面正常显示地图，回调后，自动在地图上显示标记点，用户感觉不到延迟
+    marker: <dataFromNet.Marker | undefined>undefined,//被点击的地图标记点，初始化变量，仅让typescript编译器推断变量类型
+    markers: <dataFromNet.Marker[]>[],
+    showModalStatus: false,                                                    //显示详细信息标志
+    showLoadingStatus: false                                                  //加载loading动画标志
   },
-  //初始化
-  onLoad: function () {
+
+  onLoad() {                                                                  //页面加载，先正常加载地图，
+    dataFromNet.markersSimple();                                              //运行markersSimple对象的基础方法，其内部的请求网络数据代码是异步、延迟的
+    //所以无需判断dataFromNet.markersSimple.values是否存在、再赋值给markersSimple，可直接定义和使用回调
+    let thiss = this;                                                         //必须暂存this，否则在回调代码中的this不是此this了
+    dataFromNet.markersSimple.valuesCallback = function (data: dataFromNet.MarkerSimple[]) {  //定义实现回调的代码，用于网络数据请求后回调
+      thiss.setData({                                                         //请求到网络数据后，设置地图标记点简单信息数组，地图上立即显示标记点，不必要显示加载动画，让用户无感延迟
+        markersSimple: data
+      })
+    }
+  },
+
+  onShow() {                                                                  //生命周期函数--监听页面显示
+  },
+
+  showModal: function (event: any) {
+    var id = event.markerId;                                                  //地图标记点id
+
+    let b: boolean = false;
+    for (let v of this.data.markers) {                                        //先判断被点击的地图点的详细信息是否在数组中，如在，则暂存到m
+      if (id == v.id) {
+        b = true;
+        this.setData({
+          marker: v,
+          showModalStatus: true
+        })
+        break;
+      }
+    }
+
+
+    if (!b) {                                                                 //如不在数组中，则网络请求数据，再存到数组中，下次点击，读取数组，不在网络请求
+      if (!dataFromNet.marker.valueCallback) {
+        let thiss = this;
+        dataFromNet.marker.valueCallback = function (value: dataFromNet.Marker) {  //定义实现回调的代码，用于网络数据请求后回调
+          thiss.data.markers.push(value);
+          thiss.setData({
+            marker: value,
+            showModalStatus: true
+          })
+        }
+      }                                               //启动地图标记点接口基础方法，请求标记点详细的网络数据
+
+      dataFromNet.marker(id)
+    }
+
+
 
   },
-  /**
- * 生命周期函数--监听页面显示
- */
-  onShow() {
-  },
-  //点击标记点，显示弹出框
-  showModal: function (event: any) {
+
+  hideModal: function () {                                                    //点击页面，隐藏弹出框
     this.setData({
-      showModalStatus: true,
-      marker: this.data.markers[event.markerId - 1]
-    })
-  },
-  //点击页面，隐藏弹出框
-  hideModal: function () {
-    this.setData({
+      marker: undefined,
       showModalStatus: false
     })
   },
-  //打电话
-  calling: function (event: any) {
+
+  calling: function (event: any) {                                            //打电话
     var tel = event.currentTarget.dataset.id;
     wx.makePhoneCall({
       phoneNumber: tel,
@@ -41,16 +77,15 @@ Page({
       }
     })
   },
-  //导航地图
-  daohang: function () {
-    var marker = this.data.marker;
+
+  daohang: function () {                                                      //导航地图
+    var m = this.data.marker as dataFromNet.Marker;
 
     wx.openLocation({
-      latitude: marker.latitude,
-      longitude: marker.longitude,
-      scale: marker.scale,
-      name: marker.name,
-      address: marker.address
+      latitude: m.latitude,
+      longitude: m.longitude,
+      name: m.name,
+      address: m.address
     })
   },
 })

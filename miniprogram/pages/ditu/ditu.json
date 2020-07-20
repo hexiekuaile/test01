@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "阜阳环保设施地图，向公众开放",
-  "usingComponents": {}  
+  "usingComponents": {
+    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading"
+  }
 }
