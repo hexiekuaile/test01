@@ -3,10 +3,10 @@ import dataFromNet = require("./dataFromNet");                                  
 Page({
   data: {
     markersSimple: <dataFromNet.MarkerSimple[]>[],                            //初始化地图标记点简单信息数组，空数组，页面正常显示地图，回调后，自动在地图上显示标记点，用户感觉不到延迟
-    marker: <dataFromNet.Marker | undefined>undefined,//被点击的地图标记点，初始化变量，仅让typescript编译器推断变量类型
+    marker: <dataFromNet.Marker | undefined>undefined,                        //被点击的地图标记点，初始化为空
     markers: <dataFromNet.Marker[]>[],
     showModalStatus: false,                                                    //显示详细信息标志
-    showLoadingStatus: false                                                  //加载loading动画标志
+    //showLoadingStatus: false,                                                //加载loading动画标志    
   },
 
   onLoad() {                                                                  //页面加载，先正常加载地图，
@@ -24,12 +24,11 @@ Page({
   },
 
   showModal: function (event: any) {
-    var id = event.markerId;                                                  //地图标记点id
+    var id = event.markerId;                                                  //用户点击的地图标记点的id
 
-    let b: boolean = false;
+    //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 设置标记点 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
     for (let v of this.data.markers) {                                        //先判断被点击的地图点的详细信息是否在数组中，如在，则暂存到m
       if (id == v.id) {
-        b = true;
         this.setData({
           marker: v,
           showModalStatus: true
@@ -37,10 +36,8 @@ Page({
         break;
       }
     }
-
-
-    if (!b) {                                                                 //如不在数组中，则网络请求数据，再存到数组中，下次点击，读取数组，不在网络请求
-      if (!dataFromNet.marker.valueCallback) {
+    if (!this.data.marker) {                                                    //如不在数组中，则网络请求数据，再存到数组中，下次点击，读取数组，不在网络请求
+      if (!dataFromNet.marker.valueCallback) {                                  //如果之前没有定义回调方法
         let thiss = this;
         dataFromNet.marker.valueCallback = function (value: dataFromNet.Marker) {  //定义实现回调的代码，用于网络数据请求后回调
           thiss.data.markers.push(value);
@@ -49,18 +46,16 @@ Page({
             showModalStatus: true
           })
         }
-      }                                               //启动地图标记点接口基础方法，请求标记点详细的网络数据
-
-      dataFromNet.marker(id)
+      }
+      dataFromNet.marker(id)                                                   //启动地图标记点接口基础方法，请求标记点详细的网络数据
     }
-
-
-
+    //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  设置标记点 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   },
 
   hideModal: function () {                                                    //点击页面，隐藏弹出框
     this.setData({
-      marker: undefined,
+      marker: undefined,                                                     //把标记点设置为空
+      imgs: <String[]>[],
       showModalStatus: false
     })
   },
@@ -80,7 +75,7 @@ Page({
 
   daohang: function () {                                                      //导航地图
     var m = this.data.marker as dataFromNet.Marker;
-
+    this.data.marker = undefined
     wx.openLocation({
       latitude: m.latitude,
       longitude: m.longitude,

@@ -20,21 +20,21 @@ interface IMarkersSimple {                                //混合类型的接�
   valuesCallback?: (values: MarkerSimple[]) => void;      //可选的接口的回调方法，
 };
 
-let urlMarkersSimpleJson: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/markersSimple.json';//地图标记点的简单信息，仅仅经纬度、名称
+let urlMarkersSimpleJson: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/markersSimple.json';//地图标记点的简单信息，仅仅经纬度、名称
 
 function getMarkersSimple(): IMarkersSimple {              //接口实现，仅实现了基础方法代码，未实现回调方法，
-  let func = <IMarkersSimple>function () {    
+  let func = <IMarkersSimple>function () {
     wx.request({                                          //网络请求取数据
       url: urlMarkersSimpleJson,                         //简单地图标记点json文件的网络地址
       success(res) {
         func.values = <MarkerSimple[]>res.data;
-        
+
         if (func.valuesCallback) {                        //如果回调方法存在，则运行回调方法
           func.valuesCallback(func.values);
         }
       },
       fail(res) {
-        console.log('网络连接错误： '+res.errMsg)
+        console.log('网络连接错误： ' + res.errMsg)
       }
     });
   };
@@ -47,6 +47,8 @@ export let markersSimple = getMarkersSimple();
 //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 地图标记点简单信息 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 地图标记点 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+let urlImgPre: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/img/';//地图标记点代表的开放单位照片url前缀
+
 export class Marker {                       //地图标记点类
   id: number;
   type: string;//类型
@@ -56,10 +58,11 @@ export class Marker {                       //地图标记点类
   address: string;//地址
   tel: string;//电话
   jiedainengli: number;//接待能力
-  info: string;//信息文本
   imgNum: number;//图片数量，图片名称是id+imgNum.png，约定：0≤imgNum≤9，如：11.png，21.png，22.png
-  constructor(id: number, type: string, longitude: number, latitude: number, name: string, address: string, tel: string, jiedainengli: number,
-    info: string = '', imgNum:number=0) {
+  imgsURL: string[];//开放单位照片数组
+  info: string;//信息文本
+  constructor(id: number, type: string, longitude: number, latitude: number, name: string, address: string, tel: string, jiedainengli: number, imgNum: number = 0, imgsURL: string[] = <string[]>[],
+    info: string = '') {
     this.id = id;
     this.type = type;
     this.longitude = longitude;
@@ -70,36 +73,58 @@ export class Marker {                       //地图标记点类
     this.jiedainengli = jiedainengli;
     this.info = info;
     this.imgNum = imgNum;
+    this.imgsURL = imgsURL;
 
-    if(imgNum>9)
+    if (imgNum > 9)
       this.imgNum = 9;
     else if (imgNum < 0)
-      this.imgNum=0    
+      this.imgNum = 0
+
+    if (imgsURL.length == 0 && imgNum > 0) //设置单位信息中的图片
+      for (let i = 0; i < imgNum; i++) {
+        let u = urlImgPre + id + i + '.jpg';
+        this.imgsURL.push(u);
+      }
   }
 };
 
 interface IMarker {                                           //混合类型的接口，地图标记点接口
-  (id:number): void;                                         //接口的基础方法
+  (id: number): void;                                         //接口的基础方法
   value: Marker;                                           //地图标记点，由基础方法从网络请求数据
   valueCallback?: (value: Marker) => void;                //可选的接口的回调方法，
 };
 
 //地图标记点json文件的地址，形如 https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/marker1.json
-let urlMarkersJson: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/marker';//地图标记点较多信息，含详细信息 地址、电话、等
+let urlMarkersJson: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/marker';//地图标记点较多信息，含详细信息 地址、电话、等
 
 function getMarker(): IMarker {                            //接口实现，仅实现了基础方法代码，未实现回调方法，
   let func = <IMarker>function (id: number) {              //网络请求取数据
     wx.request({
-      url: urlMarkersJson+id+'.json',                     //简单地图标记点json文件的网络地址
+      url: urlMarkersJson + id + '.json',                 //简单地图标记点json文件的网络地址
       success(res) {
 
-        func.value = <Marker>res.data;
+        func.value = <Marker>res.data;                    //自动装配，但没有启动类构建器  
+
+        //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 因为自动装配没有启动构建器，所以需要设置图片路径代码  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        if (func.value.imgNum > 9)
+          func.value.imgNum = 9;
+        else if (func.value.imgNum < 0)
+          func.value.imgNum = 0
+
+        func.value.imgsURL = <string[]>[];              //初始化图片路径数组
+
+        if (func.value.imgNum > 0 && func.value.imgsURL.length == 0) //设置单位信息中的图片
+          for (let i = 1; i < func.value.imgNum + 1; i++) {
+            let u = urlImgPre + id + i + '.jpg';
+            func.value.imgsURL.push(u);
+          }
+        //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 设置图片路径代码  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
         if (func.valueCallback) {                          //如果回调方法存在，则运行回调方法
           func.valueCallback(func.value);
         }
       },
       fail(res) {
-        console.log('网络连接错误 marker'+id+': '+res.errMsg)
+        console.log('点击地图定位点时，网络连接错误 id=' + id + ' : ' + res.errMsg)
       }
     });
   };

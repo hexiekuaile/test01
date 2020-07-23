@@ -54,8 +54,13 @@
 		</cover-view>
 		<cover-view style="padding:20rpx;">
 			<cover-view class='infoTxt'>{{marker.info}}</cover-view>
-			<cover-image class="infoImg" src='/images/info/{{marker.id}}1.jpg' style="margin-bottom:20rpx" />
-			<cover-image class="infoImg" src='/images/info/{{marker.id}}2.jpg' style="margin-bottom:20rpx" />
+			<cover-image
+			 wx:for="{{marker.imgsURL}}"
+			 wx:for-item="url"
+			 src='{{url}}'
+			 class="infoImg"
+			 style="margin-bottom:20rpx"
+			/>
 		</cover-view>
 	</cover-view>
 </map>
