@@ -1,21 +1,35 @@
-/* pages/about/about.wxss */
 .parent {
-    width: 100%;
-    text-align: center;
-  }
-  .bar {
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    background-color: #f2f2f2;
-    border-bottom: 1rpx solid #ccc;   
-    color: #6B8E23;
-  }
-  .txt {
-    text-indent:2em;
-  }
-  .img {
-    border-radius: 20rpx;
-    transform: scale(0.9);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+  width: 95%;
+  margin: 10rpx 40rpx 50rpx 20rpx;
+  /* 上右下左 */
+}
+
+.box {
+  /*text-indent: 2em;
+   text-align: left; */   
+  padding: 20rpx;
+  border-radius: 20rpx;
+  /* 圆角 */
+  /* transform: scale(1);缩放 */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* 阴影 */
+}
+
+.bar {
+  margin: 10rpx auto;
+  width: 90%;
+  display: block;
+  text-align: center;
+  border-radius: 20rpx;
+  background-color: #f2f2f2;
+  border-bottom: 1rpx solid #ccc;
+  color: #6B8E23;
+}
+
+
+
+.img {
+  width: 95%;
+  margin: 10rpx 0 0 20rpx;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

@@ -1,22 +1,20 @@
-import dataFromNet = require("./dataFromNet");
+import util = require("../../utils/netVideo.js");
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    videos: <dataFromNet.Video[]>new Array(),
+    videos: <util.Video[]>new Array(),
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    dataFromNet.video();                              //启动视频混合接口的基础函数，网络读取各视频信息，有网络请求延迟
+    let urlVideoXuanchuanPian: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/videoXuanChuanPian.json';//宣传片json信息地址
+    let video = util.getVideo(urlVideoXuanchuanPian);
+    video();                              //启动视频混合接口的基础函数，网络读取各视频信息，有网络请求延迟
 
     //定义视频混合结合的回调函数，
     let thiss = this;
-    dataFromNet.video.valuesCallback = function (video: dataFromNet.Video) {  //定义实现回调的代码，用于网络数据请求后回调     
+    video.valuesCallback = function (video: util.Video) {  //定义实现回调的代码，用于网络数据请求后回调     
       let i: Number = thiss.data.videos.length;
       let tmp = 'videos[' + i + ']';
       thiss.setData({
