@@ -9,7 +9,7 @@ export class Video {                                          //腾讯视频类
     this.type = type;
     this.name = name;
     this.valueCallback = valueCallback;
-    this.convertVidToUrl();
+    this.convertVidToUrl();//在初始化对象时，联网转化vid
   }
   convertVidToUrl() {                                    //将vid转换为URL,有网络请求延迟
     let that = this
@@ -38,7 +38,7 @@ export class Video {                                          //腾讯视频类
         //规律url + fn + '?vkey=' + fvkey 
         let src = urll + fnn + "?vkey=" + fvkeyy;
         that.src = src;
-        that.valueCallback!(that);
+        that.valueCallback!(that);//！表示已经初始化，回调存在。传递本video对象
       },
       fail(res) {
         console.log(that.name + ' 转换视频vid时错误：' + res.errMsg)
@@ -47,25 +47,23 @@ export class Video {                                          //腾讯视频类
   }
 };
 
-interface IVideo {                                        //混合类型的接口，视频接口
-  (): void;                                   //接口的基础方法
+export interface IVideo {                                //混合类型的接口，视频接口
+  (): void;                                             //接口的基础方法
   values: Video[];                                      //视频数组，由基础方法从网络请求数据
   valuesCallback?: (video: Video) => void;           //可选的接口的回调方法，
 };
-
-//let url: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/videoXuanChuanPian.json';//宣传片json信息地址
 
 export function getVideo(url: string): IVideo {                //接口实现，仅实现了基础方法代码，未实现回调方法，
   let func = <IVideo>function () {
     wx.request({                                     //网络请求取数据
       url: url,                                       //简单地图标记点json文件的网络地址
       success(res) {
-        let vs = <Video[]>res.data;                   //typescript自动装配，但没有启动视频类的构建器
+        let vs = <Video[]>res.data;                   //typescript自动装配，其他信息都存在，仅src为空，但不启动视频类的构建器，需要人工new对象
 
-        func.values = new Array(vs.length);           //生成固定长度视频对象，网络请求视频地址       
+        func.values = new Array(vs.length);           //生成固定长度视频对象   
 
         for (let i = 0; i < vs.length; i++)
-          func.values[i] = new Video(vs[i].vid, vs[i].type, vs[i].name, func.valuesCallback);
+          func.values[i] = new Video(vs[i].vid, vs[i].type, vs[i].name, func.valuesCallback);//人工new对象，启动构建器，网络拉取数据转化vid为src
       },
       fail(res) {
         console.log('视频请求网络连接错误： ' + res.errMsg)
@@ -74,7 +72,3 @@ export function getVideo(url: string): IVideo {                //接口实现，
   };
   return func;
 };
-//声明对象变量
-//export let video = getVideoXuanChuanPian();
-//运行对象的基础方法代码，网络请求数据
-//markersSimple();

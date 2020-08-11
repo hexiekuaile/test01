@@ -15,7 +15,15 @@ export function about(url: string) {                //接口实现，仅实现�
       valueCallback(map, keys);
     },
     fail(res) {
-      console.log('视频请求网络连接错误： ' + res.errMsg)
+      console.log('about.json网络连接错误： ' + res.errMsg)
+    },
+    complete() {
+      //隐藏loading 提示框
+      wx.hideLoading();
+      //隐藏导航条加载动画
+      wx.hideNavigationBarLoading();
+      //停止下拉刷新
+      wx.stopPullDownRefresh();
     }
   });
 

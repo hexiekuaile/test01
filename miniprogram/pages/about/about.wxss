@@ -1,18 +1,11 @@
-.parent {
-  width: 95%;
-  margin: 10rpx 40rpx 50rpx 20rpx;
-  /* 上右下左 */
-}
-
 .box {
   /*text-indent: 2em;
-   text-align: left; */   
+   text-align: left; */
+  margin: 10rpx 20rpx 50rpx 20rpx;
   padding: 20rpx;
-  border-radius: 20rpx;
-  /* 圆角 */
+  border-radius: 20rpx;  /* 圆角 */
   /* transform: scale(1);缩放 */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* 阴影 */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  /* 阴影 */
 }
 
 .bar {
@@ -26,7 +19,10 @@
   color: #6B8E23;
 }
 
-
+.txt {
+  display: block;
+  text-align: left;
+}
 
 .img {
   width: 95%;
