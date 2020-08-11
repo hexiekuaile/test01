@@ -53,10 +53,10 @@ export interface IVideo {                                //混合类型的接口
   valuesCallback?: (video: Video) => void;           //可选的接口的回调方法，
 };
 
-export function getVideo(url: string): IVideo {                //接口实现，仅实现了基础方法代码，未实现回调方法，
+export function getVideo(URLVideoJSON: string): IVideo {                //接口实现，仅实现了基础方法代码，未实现回调方法，
   let func = <IVideo>function () {
     wx.request({                                     //网络请求取数据
-      url: url,                                       //简单地图标记点json文件的网络地址
+      url: URLVideoJSON,                                       //简单地图标记点json文件的网络地址
       success(res) {
         let vs = <Video[]>res.data;                   //typescript自动装配，其他信息都存在，仅src为空，但不启动视频类的构建器，需要人工new对象
 
