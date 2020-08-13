@@ -1,8 +1,7 @@
 <map
  id="map"
- longitude="115.814416"
- latitude="32.890840"
- scale="8"
+ longitude="{{markersSimple[0].longitude}}"
+ latitude="{{markersSimple[0].latitude}}"
  include-points="{{markersSimple}}"
  markers="{{markersSimple}}"
  bindmarkertap="showModal"
@@ -10,10 +9,10 @@
  show-location
  style="width: 100%; height: 100%;"
 >
-	<!-- <cover-view class='index_bt1'>
-      <cover-image class='xiaoer' bindtap="login" src="/images/mk.png" />
-    </cover-view>
-    <cover-view class='index_shuaxin'>
+	<cover-view class='index_bt1'>
+		<cover-image class='xiaoer' bindtap="shuaxin" src="/images/shuaxin.png" />
+	</cover-view>
+	<!-- <cover-view class='index_shuaxin'>
       <cover-image class='shuaxin' src="/images/mk.png" />
     </cover-view> -->
 	<!-- 屏幕背景变暗的背景 -->

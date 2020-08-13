@@ -5,24 +5,24 @@
  wx:key="*this"
  wx:for-item="k"
  wx:for-index="i"
+ bindtouchstart='touchStart'
+ bindtouchend="touchEnd"
 >
-		<view class="bar">{{k}}</view>
-
-		<text wx:if="{{!imgJudge[i]}}" class="txt" space="emsp" selectable="{{true}}">{{map[k]}}</text>
-		<view wx:else>
-			<image
-			 wx:for="{{map[k]}}"
-			 wx:key="*this"
-			 wx:for-item="kk"
-			 show-menu-by-longpress='true'
-			 mode="aspectFit"
-			 class="img"
-			 src="{{IMG_PATH_PRE+kk}}"
-			 bindtap="previewImg"
-			 data-url="{{kk}}"
-			/>
-		</view>
-
+	<view class="bar">{{k}}</view>
+	<text wx:if="{{!imgJudge[i]}}" class="txt" space="emsp" selectable="{{true}}">{{map[k]}}</text>
+	<view wx:else>
+		<image
+		 wx:for="{{map[k]}}"
+		 wx:key="*this"
+		 wx:for-item="kk"
+		 show-menu-by-longpress='true'
+		 mode="aspectFit"
+		 class="img"
+		 src="{{IMG_PATH_PRE+kk}}"
+		 bindtap="previewImg"
+		 data-url="{{kk}}"
+		/>
+	</view>
 	<!-- <text wx:if="{{!mapImgJudge[k]}}" space="emsp" selectable="{{true}}">{{map[k]}}</text> -->
 	<!-- <view class="bar">logo</view>
 				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/logo.jpg" />

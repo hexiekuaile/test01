@@ -53,7 +53,7 @@ export interface IVideo {                                //混合类型的接口
   valuesCallback?: (video: Video) => void;           //可选的接口的回调方法，
 };
 
-export function getVideo(URLVideoJSON: string): IVideo {                //接口实现，仅实现了基础方法代码，未实现回调方法，
+export function getVideo(URLVideoJSON: string): IVideo {    //接口实现，仅实现了基础方法代码，未实现回调方法，
   let func = <IVideo>function () {
     wx.request({                                     //网络请求取数据
       url: URLVideoJSON,                                       //简单地图标记点json文件的网络地址

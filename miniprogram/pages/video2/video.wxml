@@ -1,5 +1,10 @@
-<view wx:for="{{videos}}" wx:key="unique">
+<view
+ wx:for="{{videos}}"
+ wx:key="unique"
+ bindtouchstart='touchStart'
+ bindtouchend="touchEnd"
+>
 	<video id="v{{index}}" src="{{item.src}}" style="width: 100%;height=400px;margin:1px;align:center" />
-	<cover-view style="text-align:center;margin:5rpx 0rpx 40rpx 0px;">{{index+1}} {{item.name}}</cover-view>
+	<view style="text-align:center;margin:5rpx 0rpx 40rpx 0px;">{{index+1}} {{item.name}}</view>
 </view>
 
