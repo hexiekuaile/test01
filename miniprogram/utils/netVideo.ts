@@ -1,3 +1,10 @@
+/*
+ * @Author: yanwei
+ * @Date: 2020-07-27 10:26:58
+ * @LastEditors: yanwei
+ * @LastEditTime: 2020-08-18 15:22:43
+ * @Description : 
+ */
 export class Video {                                          //腾讯视频类
   vid: string;                                               //腾讯视频vid
   type: string;                                             //类型
@@ -38,6 +45,7 @@ export class Video {                                          //腾讯视频类
         //规律url + fn + '?vkey=' + fvkey 
         let src = urll + fnn + "?vkey=" + fvkeyy;
         that.src = src;
+        //console.log(src)
         that.valueCallback!(that);//！表示已经初始化，回调存在。传递本video对象
       },
       fail(res) {
