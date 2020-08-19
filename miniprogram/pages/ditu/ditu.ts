@@ -2,7 +2,7 @@
  * @Author: yanwei
  * @Date: 2020-04-18 20:00:03
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-13 11:49:04
+ * @LastEditTime: 2020-08-19 10:42:32
  * @Description : 地图页面代码
  */
 
@@ -36,6 +36,18 @@ onLoad() {
 
       thiss.hideLoading(); //隐藏加载动画
     };
+
+    
+  wx.getSystemInfo({
+    success (res) {
+      console.log('设备品牌: '+res.brand)
+      console.log('设备型号: '+res.model)
+      console.log('微信版本号: '+res.version)
+      console.log('操作系统及版本: '+res.system)
+      console.log('客户端平台: '+res.platform)
+      console.log('客户端基础库版本: '+res.SDKVersion)
+    }})
+
   }, 
 
   /**
