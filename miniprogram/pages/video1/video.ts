@@ -2,7 +2,7 @@
  * @Author: yanwei
  * @Date: 2020-04-24 10:06:35
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-13 11:50:35
+ * @LastEditTime: 2020-08-18 16:11:50
  * @Description : 宣传片页面代码
  */
 
@@ -93,6 +93,12 @@ Page({
     wx.hideNavigationBarLoading(); //隐藏导航条加载动画         
     wx.stopPullDownRefresh(); //停止下拉刷
   },
+  toOut(){
+    wx.navigateTo({
+       url: '../out/out',
+    })
+ },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
