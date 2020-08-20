@@ -2,11 +2,11 @@
  * @Author: yanwei
  * @Date: 2020-06-22 12:20:02
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-13 11:51:51
+ * @LastEditTime: 2020-08-20 14:51:58
  * @Description : 关于页面的代码
  */
-import netData = require("./netData");//从网络读取关于信息的代码
-import slide = require("../../utils/slide"); //判断左右滑动的代码
+import netData = require("../../netData");//从网络读取关于信息的代码
+import slide = require("../../slide"); //判断左右滑动的代码
 
 Page({
   data: {
