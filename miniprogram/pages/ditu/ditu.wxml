@@ -12,28 +12,17 @@
 	<cover-view class='index_bt1'>
 		<cover-image class='xiaoer' bindtap="shuaxin" src="/images/shuaxin.png" />
 	</cover-view>
-	<!-- <cover-view class='index_shuaxin'>
-      <cover-image class='shuaxin' src="/images/mk.png" />
-    </cover-view> -->
 	<!-- 屏幕背景变暗的背景 -->
-	<cover-view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}">
-		<!-- <mp-loading
-		 type="circle"
-		 duration="{{900}}"
-		 show="{{showLoadingStatus}}"
-		 animated="{{true}}"
-		/> -->
-	</cover-view>
-	<!-- 弹出框 -->
-	<cover-view class="commodity_attr_box" wx:if="{{showModalStatus}}">
+	<cover-view class="commodity_screen" bindtap="hideModal" wx:if="{{isShowModal}}" />
+	<!-- 弹出框 animation="{{animationData}}-->
+	<cover-view class="commodity_attr_box" wx:if="{{isShowModal}}">
 		<cover-view class='placeBox'>
 			<cover-view class='placeViewLt'>
 				<cover-view class='viewTitle'>{{marker.name}}</cover-view>
 				<cover-view class='viewDis'>{{marker.address}}</cover-view>
-				<!-- <cover-view class='viewAddr'>{{marker.longitude}}</cover-view> -->
 			</cover-view>
 			<cover-view class='placeViewRt'>
-				<cover-image data-id="{{marker.id}}" bindtap="opendetail" src='/images/{{marker.type}}.png' />
+				<cover-image src='/images/{{marker.type}}.png' />
 			</cover-view>
 		</cover-view>
 		<cover-view class='viewIcon'>
@@ -42,7 +31,7 @@
 			<cover-image
 			 class='indexIcon1'
 			 data-id="{{marker.tel}}"
-			 src='/images/share.png'
+			 src='/images/call.png'
 			 bindtap='calling'
 			/>
 			<cover-view class='timeText1' data-id="{{marker.tel}}" bindtap='calling'>
@@ -56,6 +45,7 @@
 			<cover-image
 			 wx:for="{{marker.imgsURL}}"
 			 wx:for-item="url"
+			 wx:key="*this"
 			 src='{{url}}'
 			 class="infoImg"
 			 style="margin-bottom:20rpx"

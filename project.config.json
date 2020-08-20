@@ -5,7 +5,7 @@
 	},
 	"miniprogramRoot": "miniprogram/",
 	"compileType": "miniprogram",
-	"libVersion": "2.8.3",
+	"libVersion": "2.8.0",
 	"projectname": "test01",
 	"scripts": {
 		"beforeCompile": "npm run tsc",
