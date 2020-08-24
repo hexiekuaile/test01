@@ -1,11 +1,9 @@
 {
   "pages": [
     "pages/ditu/ditu",
-    "pages/logs/logs",
     "pages/video1/video",
     "pages/video2/video",
-    "pages/about/about",
-    "pages/out/out"
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,8 +16,7 @@
     "color": "#a9b7b7",
     "selectedColor": "#11cd6e",
     "borderStyle": "white",
-    "list": [
-      {
+    "list": [{
         "selectedIconPath": "images/ditu1.png",
         "iconPath": "images/ditu0.png",
         "pagePath": "pages/ditu/ditu",

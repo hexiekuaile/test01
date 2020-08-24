@@ -23,19 +23,5 @@
 		 data-url="{{kk}}"
 		/>
 	</view>
-	<!-- <text wx:if="{{!mapImgJudge[k]}}" space="emsp" selectable="{{true}}">{{map[k]}}</text> -->
-	<!-- <view class="bar">logo</view>
-				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/logo.jpg" />
-				<view class="bar">原创漫画</view>
-				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/wangge01.jpg" />
-				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/wangge02.jpg" />
-				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/jiancezan01.jpg" />
-				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/jiancezan02.jpg" />
-				<view class="bar">阜阳市生态环境局</view>
-				<image show-menu-by-longpress='true' mode="aspectFit" class="img" src="/images/about/weixin.jpg" />
-				<text space="emsp" selectable="{{true}}" class="txt">\n 微信公众号 \n</text>
-				<text space="emsp" selectable="{{true}}" class="txt">\n 网站地址：sthj.fy.gov.cn \n\n</text>
-				<view class="bar">本小程序</view>
-				<text space="emsp" selectable="{{true}}" class="txt">版本：1.0.0，开发者：15357668379（微信同号）</text> -->
 </view>
 

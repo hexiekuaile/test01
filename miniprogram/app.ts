@@ -2,14 +2,14 @@
  * @Author: yanwei
  * @Date: 2020-04-17 16:56:10
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-20 14:37:20
+ * @LastEditTime: 2020-08-20 17:58:15
  * @Description : 
  */
 // app.ts
+
 App<IAppOption>({
   globalData: {},
   onLaunch() {
-
 
     
     // 展示本地存储能力

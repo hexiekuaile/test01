@@ -2,12 +2,15 @@
  * @Author: yanwei
  * @Date: 2020-06-22 12:20:02
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-20 14:51:58
+ * @LastEditTime: 2020-08-24 17:18:24
  * @Description : 关于页面的代码
  */
-import netData = require("../../netData");//从网络读取关于信息的代码
-import slide = require("../../slide"); //判断左右滑动的代码
+//import netData = require("./netdata");//从网络读取关于信息的代码
+//import slide = require("../../utils/slide"); //判断左右滑动的代码
 
+// import * as netData from "./aboutData";
+// import * as slide from "../../utils/slide.js";
+import video = require("../video1/video");
 Page({
   data: {
     IMG_PATH_PRE:
@@ -27,17 +30,14 @@ Page({
    *  
    * 
    */
-  
+
   onLoad() {
-    this.showLoading();
-    netData.about(this.data.ABOUT_JSON_PATH);
+    this.showLoading();//显示加载进度条
+    let iAbout = getAbout(this.data.ABOUT_JSON_PATH);//传递参数，获得IAbout接口对象。也即初始化iAbout对象
+
     let thiss = this;
-    if (!netData.valueCallback)
-      //判断回调函数不存在，则定义
-      netData.valueCallback = function (
-        map: { [key: string]: string | string[] },
-        keys: string[]
-      ) {
+    if (!iAbout.valuesCallback)      //判断回调函数不存在，则定义
+      iAbout.valuesCallback = function (map: { [key: string]: string | string[] }, keys: string[]): void {
         //定义实现回调的代码，用于网络数据请求后回调
         for (let k of keys) {
           if (map[k] instanceof Array) {
@@ -55,12 +55,14 @@ Page({
         });
         thiss.hideLoading();
       };
+
+      iAbout();//启动IAbout接口对象的基础函数，网络读取各视频信息，有网络请求延迟
   },
-/**
- * @description 页面相关事件处理函数--监听用户滑动开始
- * @param {*} e
- */
-touchStart(e: any) {
+  /**
+   * @description 页面相关事件处理函数--监听用户滑动开始
+   * @param {*} e
+   */
+  touchStart(e: any) {
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
@@ -72,18 +74,13 @@ touchStart(e: any) {
   touchEnd(e: any) {
     let endX = e.changedTouches[0].clientX;
     let endY = e.changedTouches[0].clientY;
-    slide.slide(
+    video.slide(
       endX,
       endY,
       this.data.startX,
       this.data.startY,
       "/pages/about/about"
     );
-   /*  let url!: string;
-    if (turn === "left") url = "/pages/video2/video";
-    else if (turn === "right") url = "/pages/ditu/ditu";
-    if (!url) return;
-    wx.switchTab({ url: url }); //跳转到底部tab 表示的页面前，启动onHide事件 */
   },
   /**
    * 鼠标点击预览图片大图
@@ -129,17 +126,17 @@ touchStart(e: any) {
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady() { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {},
+  onHide() { },
 
   /**
    * 生命周期函数--监听页面卸载
@@ -148,3 +145,34 @@ touchStart(e: any) {
     // clearInterval(this.data.timer)
   },
 });
+//////////////////////// 待模块化代码 ///////////
+export interface IAbout {             //混合类型的接口
+  (): void;                          //接口的基础方法
+  valuesCallback?: (map: { [key: string]: string | string[] }, keys: string[]) => void;      //可选的接口的回调方法，
+};
+
+export function getAbout(ABOUT_JSON_PATH: string): IAbout {    //接口实现，仅实现了基础方法代码，未实现回调方法，
+  let func = <IAbout>function () {
+    wx.request({                                     //网络请求取数据
+      url: ABOUT_JSON_PATH,              
+      success(res) {
+        // let map: { [key: string]: string } = {};
+        let map: { [key: string]: string | string[] } = res.data as { [key: string]: string | string[] }; //typescript自动装配，但没有启动视频类的构建器
+  
+        let keys = <string[]>Object.keys(map);//获取map键     
+  
+        /* for (let k of keys) {
+          console.log( map[k] instanceof Array)
+        } */
+  
+        func.valuesCallback!(map, keys);
+      },
+      fail(res) {
+        console.log('about.json网络连接错误： ' + res.errMsg)
+      },
+      complete() { }
+    });
+  
+  };
+  return func;
+};

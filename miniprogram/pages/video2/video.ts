@@ -2,17 +2,17 @@
  * @Author: yanwei
  * @Date: 2020-06-17 15:58:05
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-13 11:52:56
+ * @LastEditTime: 2020-08-24 17:06:26
  * @Description : 科普片页面代码
  */
-import util = require("../../utils/netVideo");
-import slide = require("../../utils/slide");//判断左右滑动代码
-
+// import util = require("../../utils/netVideo");
+// import slide = require("../../utils/slide");//判断左右滑动代码
+import video = require("../video1/video");
 Page({
   data: {
     URL_VIDEO_JSON: "https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/videoKePuPian.json",//宣传片json信息地址
-    videos: <util.Video[]>[],//Video对象数组
-    ivideo: <util.IVideo>{},//IVideo类型空对象
+    videos: <video.Video[]>[],//Video对象数组
+    ivideo: <video.IVideo>{},//IVideo类型空对象
     numCallback: 0,//回调次数，用于表示全部转换src完成后，隐藏loading动画
     startX: 0,//通过xy坐标值判断左右滑动
     startY: 0,
@@ -23,11 +23,11 @@ Page({
    */
   onLoad() {
     this.showLoading();
-    this.data.ivideo = util.getVideo(this.data.URL_VIDEO_JSON);//传递参数，获得IVideo接口对象。也即初始化ivideo对象
+    this.data.ivideo = video.getVideo(this.data.URL_VIDEO_JSON);//传递参数，获得IVideo接口对象。也即初始化ivideo对象
 
     let thiss = this;
     if (!thiss.data.ivideo.valuesCallback)//如果之前未定义，则定义IVideo接口的回调函数，
-      thiss.data.ivideo.valuesCallback = function (video: util.Video) {  //定义实现回调的代码，参数是转化vid为src的video对象   
+      thiss.data.ivideo.valuesCallback = function (video: video.Video) {  //定义实现回调的代码，参数是转化vid为src的video对象   
         thiss.data.numCallback = ++thiss.data.numCallback;//记录回调次数，即记录src转换完成的对象数
         let len: Number = thiss.data.videos.length;
         let tmp = 'videos[' + len + ']';  //注意：不是i-1，是i，是在数组尾部增加一个元素
@@ -57,21 +57,21 @@ Page({
   touchEnd(e: any) {
     let endX = e.changedTouches[0].clientX;
     let endY = e.changedTouches[0].clientY;
-    slide.slide(endX, endY, this.data.startX, this.data.startY,"/pages/video2/video");
-   /*  let url!: string;
-    if (turn === "left")
-      url = "/pages/video1/video";
-    else if (turn === "right")
-      url = "/pages/about/about";
-    if (!url) return;
-    wx.switchTab({ url: url });//跳转到底部tab 表示的页面前，启动onHide事件 */
+    video.slide(endX, endY, this.data.startX, this.data.startY, "/pages/video2/video");
+    /*  let url!: string;
+     if (turn === "left")
+       url = "/pages/video1/video";
+     else if (turn === "right")
+       url = "/pages/about/about";
+     if (!url) return;
+     wx.switchTab({ url: url });//跳转到底部tab 表示的页面前，启动onHide事件 */
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
     this.setData({
-      videos: <util.Video[]>[],    //初始化video对象为空
+      videos: <video.Video[]>[],    //初始化video对象为空
       numCallback: 0//初始化回调次数为0
     })
     this.onLoad();//再次拉取新数据
@@ -121,3 +121,4 @@ Page({
     // clearInterval(this.data.timer)
   },
 })
+

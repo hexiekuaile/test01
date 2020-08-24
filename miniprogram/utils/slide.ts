@@ -2,7 +2,7 @@
  * @Author: yanwei
  * @Date: 2020-08-12 16:27:16
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-13 17:11:58
+ * @LastEditTime: 2020-08-20 16:08:01
  * @Description : 判断页面左右滑动的方法
  */
 export const slide = (
