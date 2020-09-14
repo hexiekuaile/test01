@@ -1,0 +1,51 @@
+<map
+ id="map"
+ class="map"
+ longitude="{{markersSimple[0].longitude}}"
+ latitude="{{markersSimple[0].latitude}}"
+ include-points="{{markersSimple}}"
+ markers="{{markersSimple}}"
+ bindmarkertap="showModal"
+ data-id="{{markers}}"
+ show-location
+ style="width: 100%; height: 100%;"
+/>
+<cover-image class='btn_shuaxin' bindtap="shuaxin" src="/images/shuaxin.png" />
+<!-- 灰色透明遮罩 -->
+<view class="marsk" wx:if="{{modalClass==='dialogUp'}}" bindtap="hideModal" />
+<view class="dialog-box">
+	<scroll-view scroll-y="{{true}}" class="{{modalClass}}" enable-flex="{{true}}">
+		<!-- 水平容器包裹：设施单位名称、地址、设施类型图标 -->
+		<view class="horizontal-box">
+			<view class="title-address-box">
+				<view class="title">{{marker.name}}</view>
+				<view class="address">{{marker.address}}</view>
+			</view>
+			<cover-image class='typeIcon' src="/images/{{marker.type}}.png" wx:if="{{!(!marker)}}"/>
+		</view>
+		<!-- 水平横线 
+	<view class='line' /> -->
+		<!-- 水平区域：接待能力人数、电话、导航图标等 -->
+		<!-- <view class="horizontalIconView">
+		<cover-image class='horizontalIcon' src="/images/person.png" />
+		<view class="title">接待能力{{marker.jiedainengli}}人</view>
+		<cover-image class='horizontalIcon' src="/images/call.png" />
+		<view class="title">{{marker.tel}}</view>
+		<cover-image class='horizontalIcon' src="/images/nav.png" />
+		<view class="title">导航</view>
+	</view> -->
+		<!-- 详细文字、图片区域 -->
+		<!-- <view style="padding:20rpx;">
+		<view class='infoTxt'>{{marker.info}}</view>
+		<cover-image
+		 wx:for="{{marker.imgsURL}}"
+		 wx:for-item="url"
+		 wx:key="*this"
+		 src="{{url}}"
+		 class="infoImg"
+		 style="margin-bottom:20rpx"
+		/>
+	</view> -->
+	</scroll-view>
+</view>
+

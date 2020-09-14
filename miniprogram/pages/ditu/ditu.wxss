@@ -1,48 +1,19 @@
-/* index/index.wxss */
 page {
   height: 100%;
 }
 
-.index_bt1 {
+.btn_shuaxin {
   width: 186rpx;
   height: 64rpx;
-
-  /* padding-top: 20rpx; */
   margin-top: 30rpx;
-  margin-left: 530rpx;
-}
-
-.xiaoer {
-  width: 100%;
-  height: 100%;
-}
-
-.index_shuaxin {
-  width: 60rpx;
-  height: 60rpx;
-  padding-top: 860rpx;
-  margin-left: 20rpx;
-}
-
-.shuaxin {
-  width: 60rpx;
-  height: 60rpx;
-}
-
-.sch {
-  display: block;
-  z-index: 999999;
-  height: 69rpx;
-  width: 100%;
-  margin: 0 auto;
-  padding-top: 30rpx;
+  margin-left: 30rpx;
 }
 
 /*底部弹窗开始 -使屏幕变暗  */
-.commodity_screen {
+.marsk {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   background: #000;
@@ -52,25 +23,109 @@ page {
   color: #fff;
 }
 
-/*对话框 */
-.commodity_attr_box {
+/* 弹窗 */
+.dialog {
+  position: fixed;
+  overflow-y: scroll;
   height: 80%;
   width: 100%;
-  overflow: scroll;
-  position: fixed;
-  bottom: 0;
   left: 0;
-  z-index: 2000;
+  bottom: -80%;
+  z-index: 1000;
   background: #fff;
   padding-top: 0rpx;
+  border-radius: 20rpx 20rpx 0 0;
+  /* 圆角：上左 上右 下右 下左 */
+  box-shadow: 10rpx -10rpx 10rpx #C0C0C0;
+  /* 阴影：水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 */
 }
 
-.placeBox {
+/* 弹窗升起动画 */
+.dialogUp {
+  position: fixed;
+  overflow-y: scroll;
+  height: 80%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: #fff;
+  padding-top: 0rpx;
+  border-radius: 20rpx 20rpx 0 0;
+  /* 圆角：上左 上右 下右 下左 */
+  box-shadow: 10rpx -10rpx 10rpx #C0C0C0;
+  /* 阴影：水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 */
+  animation: up 0.5s;
+}
+
+@keyframes up {
+  from {
+    bottom: -80%;
+  }
+
+  to {
+    bottom: 0;
+  }
+}
+
+
+/* Safari and Chrome */
+@-webkit-keyframes up {
+  from {
+    bottom: -80%;
+  }
+
+  to {
+    bottom: 0;
+  }
+}
+
+/* 弹窗降下动画 */
+.dialogDown {
+  position: fixed;
+  overflow-y: scroll;
+  height: 80%;
+  width: 100%;
+  left: 0;
+  bottom: -80%;
+  z-index: 1001;
+  background: #fff;
+  padding-top: 0rpx;
+  border-radius: 20rpx 20rpx 0 0;
+  /* 圆角：上左 上右 下右 下左 */
+  box-shadow: 10rpx -10rpx 10rpx #C0C0C0;
+  /* 阴影：水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 */
+  animation: down 0.5s;
+}
+
+@keyframes down {
+  from {
+    bottom: 0;
+  }
+
+  to {
+    bottom: -80%;
+  }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes down {
+  from {
+    bottom: 0;
+  }
+
+  to {
+    bottom: -80%;
+  }
+}
+
+/* 单位地址、名称、图标盒子 */
+.danwei_name_address_icon_box {
   width: 100%;
   height: 150rpx;
 }
 
-.placeViewLt {
+.danwei_name_address_box {
   display: inline-block;
   width: 620rpx;
   height: 140rpx;
@@ -78,7 +133,8 @@ page {
   vertical-align: middle;
 }
 
-.viewTitle {
+/* 设施单位名称 */
+.danwei_name {
   display: block;
   font-size: 38rpx;
   color: #3F51B5;
@@ -86,21 +142,16 @@ page {
   padding-top: 34rpx;
 }
 
-.viewDis {
+/* 设施单位地址 */
+.danwei_address {
   display: inline-block;
   font-size: 26rpx;
   color: gray;
   margin-left: 20rpx;
 }
 
-.viewAddr {
-  display: inline-block;
-  font-size: 28rpx;
-  color: gray;
-  margin-left: 20rpx;
-}
-
-.placeViewRt {
+/* 设施单位类型图标 */
+.danwei_icon {
   display: inline-block;
   width: 120rpx;
   height: 120rpx;
@@ -108,7 +159,8 @@ page {
   vertical-align: middle;
 }
 
-.viewIcon {
+/* 人电话导航盒子 */
+.person_call_navigation_box {
   display: block;
   height: 100rpx;
   width: 100%;
@@ -116,7 +168,8 @@ page {
   padding-top: 40rpx;
 }
 
-.indexIcon {
+/* 人图标 */
+.person_icon {
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
@@ -124,20 +177,22 @@ page {
   vertical-align: middle;
 }
 
-.timeText {
+/* 接待能力 */
+.jiedainengli {
   display: inline-block;
   line-height: 45rpx;
   margin-left: 12rpx;
   text-align: center;
   width: 230rpx;
   height: 45rpx;
-  background-color: rgb(230, 234, 255);
-  border-radius: 10px;
-  color: #3F51B5;
+  /* background-color: rgb(176, 188, 240);
+  border-radius: 10px; */
+  color: #069406;
   font-size: 24rpx;
 }
 
-.indexIcon1 {
+/* 电话图标 */
+.call_icon {
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
@@ -145,7 +200,8 @@ page {
   vertical-align: middle;
 }
 
-.indexIcon2 {
+/* 导航图标 */
+.nav_icon {
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
@@ -153,7 +209,8 @@ page {
   vertical-align: middle;
 }
 
-.timeText1 {
+/* 电话号码 */
+.callnum {
   display: inline-block;
   line-height: 45rpx;
   margin-left: 12rpx;
@@ -163,45 +220,23 @@ page {
   font-size: 24rpx;
 }
 
-.timeText2 {
-  display: inline-block;
-  line-height: 45rpx;
-  margin-left: 12rpx;
-  width: 200rpx;
-  height: 45rpx;
-  color: #3F51B5;
-  font-size: 24rpx;
+/* 单位信息图片盒子 */
+.danwei_info_pic_box {
+  padding: 20rpx;
 }
 
-.btn-area {
-  width: 100%;
-}
-
-.btn_no {
-  float: left;
-  width: 40%;
-  margin-left: 5%;
-  border: 0px;
-}
-
-.btn_ok {
-  float: left;
-  width: 40%;
-  margin-left: 10%;
-  margin-right: 5%;
-  border: 0px;
-}
-
-.infoImg {
-  border-radius: 20rpx;
-  transform: scale(0.9);
-}
-
-.infoTxt {
+/* 设施单位详细信息 */
+.danwei_info {
   display: block;
   white-space: pre-line;
   font-size: 28rpx;
   color: gray;
   margin-left: 20rpx;
   padding-top: 20rpx;
+}
+
+/* 设施单位图片 */
+.danwei_pic {
+  border-radius: 20rpx;
+  transform: scale(0.9);
 }

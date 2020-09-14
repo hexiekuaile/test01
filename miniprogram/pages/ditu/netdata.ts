@@ -1,3 +1,5 @@
+import { EXTERNAL_DATA_PATH } from "../../utils/commonData";
+
 export class MarkerSimple {                               //简单的地图标记点类
   id: number;                                             //序号
   type: string;                                           //类型
@@ -19,7 +21,7 @@ interface IMarkersSimple {                                //混合类型的接�
   valuesCallback?: (values: MarkerSimple[]) => void;      //可选的接口的回调方法，
 };
 
-const URL_MARKERSSIMPLE_JSON: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/markersSimple.json';//地图标记点的简单信息，仅仅经纬度、名称
+const URL_MARKERSSIMPLE_JSON: string = EXTERNAL_DATA_PATH+"/data/markersSimple.json";//地图标记点的简单信息，仅仅经纬度、名称
 
 function getMarkersSimple(): IMarkersSimple {              //接口实现，仅实现了基础方法代码，未实现回调方法，
   let func = <IMarkersSimple>function () {
@@ -44,7 +46,7 @@ export let markersSimple = getMarkersSimple();
 //运行对象的基础方法代码，网络请求数据
 //markersSimple();
 
-const URL_PATH_PRE_IMG: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/img/';//地图标记点代表的开放单位照片url前缀
+const URL_PATH_PRE_IMG: string = EXTERNAL_DATA_PATH+"/img/";//地图标记点代表的开放单位照片url前缀
 
 export class Marker {                       //地图标记点类
   id: number;
@@ -92,7 +94,7 @@ interface IMarker {                                           //混合类型的�
 };
 
 //地图标记点json文件的地址，形如 https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/marker1.json
-const URL_MARKERS_JSON: string = 'https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/marker';//地图标记点较多信息，含详细信息 地址、电话、等
+const URL_MARKERS_JSON: string = EXTERNAL_DATA_PATH+"/data/marker";//地图标记点较多信息，含详细信息 地址、电话、等
 
 function getMarker(): IMarker {                            //接口实现，仅实现了基础方法代码，未实现回调方法，
   let func = <IMarker>function (id: number) {              //网络请求取数据

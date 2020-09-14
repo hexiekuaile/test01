@@ -2,27 +2,23 @@
  * @Author: yanwei
  * @Date: 2020-06-22 12:20:02
  * @LastEditors: yanwei
- * @LastEditTime: 2020-08-24 17:18:24
+ * @LastEditTime: 2020-09-14 11:40:47
  * @Description : 关于页面的代码
  */
-//import netData = require("./netdata");//从网络读取关于信息的代码
-//import slide = require("../../utils/slide"); //判断左右滑动的代码
+import { getAbout } from "./netdata"
+import { jumpNav2 } from "../../utils/slide"
+import { EXTERNAL_DATA_PATH } from "../../utils/commonData";
 
-// import * as netData from "./aboutData";
-// import * as slide from "../../utils/slide.js";
-import video = require("../video1/video");
 Page({
   data: {
-    IMG_PATH_PRE:
-      "https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/img/about/", //图片路径前缀
-    ABOUT_JSON_PATH:
-      "https://a-1256136493.cos.ap-nanjing.myqcloud.com/fyhbss/data/about.json", //about信息json文件路径
+    EXTERNAL_DATA_PATH: EXTERNAL_DATA_PATH,//外部数据和图片总路径
+    IMG_PATH_PRE: EXTERNAL_DATA_PATH + "img/about/", //图片路径前缀
+    ABOUT_JSON_PATH: EXTERNAL_DATA_PATH + "data/about.json", //about信息json文件路径
     map: <{ [key: string]: string | string[] }>{}, //关于信息，键值对，值有文本、图片路径列表
     keys: <string[]>[],
     imgJudge: <boolean[]>[], //对应map键值对，判断值是否为数组，是则为图片，为true，纯属为wxml页面wx:if服务。在about.json文件中，例如： "logo": ["logo.jpg"],
     preImgs: <string[]>[], //所有预览图片路径数组
-    startX: 0, //通过xy坐标值判断左右滑动
-    startY: 0,
+    eventTouchStart: {}, //滑动手势开始事件
   },
 
   /**
@@ -56,7 +52,7 @@ Page({
         thiss.hideLoading();
       };
 
-      iAbout();//启动IAbout接口对象的基础函数，网络读取各视频信息，有网络请求延迟
+    iAbout();//启动IAbout接口对象的基础函数，网络读取各视频信息，有网络请求延迟
   },
   /**
    * @description 页面相关事件处理函数--监听用户滑动开始
@@ -64,23 +60,14 @@ Page({
    */
   touchStart(e: any) {
     this.setData({
-      startX: e.changedTouches[0].clientX,
-      startY: e.changedTouches[0].clientY,
+      eventTouchStart: e
     });
   },
   /**
    * 页面相关事件处理函数--监听用户滑动结束
    */
   touchEnd(e: any) {
-    let endX = e.changedTouches[0].clientX;
-    let endY = e.changedTouches[0].clientY;
-    video.slide(
-      endX,
-      endY,
-      this.data.startX,
-      this.data.startY,
-      "/pages/about/about"
-    );
+    jumpNav2("about", this.data.eventTouchStart, e);
   },
   /**
    * 鼠标点击预览图片大图
@@ -145,34 +132,3 @@ Page({
     // clearInterval(this.data.timer)
   },
 });
-//////////////////////// 待模块化代码 ///////////
-export interface IAbout {             //混合类型的接口
-  (): void;                          //接口的基础方法
-  valuesCallback?: (map: { [key: string]: string | string[] }, keys: string[]) => void;      //可选的接口的回调方法，
-};
-
-export function getAbout(ABOUT_JSON_PATH: string): IAbout {    //接口实现，仅实现了基础方法代码，未实现回调方法，
-  let func = <IAbout>function () {
-    wx.request({                                     //网络请求取数据
-      url: ABOUT_JSON_PATH,              
-      success(res) {
-        // let map: { [key: string]: string } = {};
-        let map: { [key: string]: string | string[] } = res.data as { [key: string]: string | string[] }; //typescript自动装配，但没有启动视频类的构建器
-  
-        let keys = <string[]>Object.keys(map);//获取map键     
-  
-        /* for (let k of keys) {
-          console.log( map[k] instanceof Array)
-        } */
-  
-        func.valuesCallback!(map, keys);
-      },
-      fail(res) {
-        console.log('about.json网络连接错误： ' + res.errMsg)
-      },
-      complete() { }
-    });
-  
-  };
-  return func;
-};
