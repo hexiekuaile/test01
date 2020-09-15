@@ -3,9 +3,11 @@
    text-align: left; */
   margin: 10rpx 20rpx 50rpx 20rpx;
   padding: 20rpx;
-  border-radius: 20rpx;  /* 圆角 */
+  border-radius: 20rpx;
+  /* 圆角 */
   /* transform: scale(1);缩放 */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  /* 阴影 */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* 阴影 */
 }
 
 .bar {
@@ -22,6 +24,11 @@
 .txt {
   display: block;
   text-align: left;
+  /* 以下：文字效果 */
+  color: transparent;
+  background-color: rgb(32, 32, 32);
+  text-shadow: rgba(255, 255, 255, 0.5) 0 5px 6px, rgba(255, 255, 255, 0.2) 1px 3px 3px;
+  -webkit-background-clip: text;
 }
 
 .img {

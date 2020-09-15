@@ -2,7 +2,7 @@
  * @Author: yanwei
  * @Date: 2020-06-22 12:20:02
  * @LastEditors: yanwei
- * @LastEditTime: 2020-09-14 11:40:47
+ * @LastEditTime: 2020-09-15 17:16:21
  * @Description : 关于页面的代码
  */
 import { getAbout } from "./netdata"
@@ -73,7 +73,7 @@ Page({
    * 鼠标点击预览图片大图
    */
   previewImg(event: any) {
-    let url = this.data.IMG_PATH_PRE + "PRE" + event.currentTarget.dataset.url; //约定：小图路径前+PRE=预览图路径
+    let url = this.data.IMG_PATH_PRE + "PRE" + event.currentTarget.dataset.url; //约定：小图路径前+PRE=预览大图路径
     let thiss = this;
     wx.previewImage({
       current: url, // 当前显示图片的http链接
