@@ -2,7 +2,7 @@
  * @Author: yanwei
  * @Date: 2020-04-18 20:00:03
  * @LastEditors: yanwei
- * @LastEditTime: 2020-09-15 10:51:05
+ * @LastEditTime: 2020-09-16 15:28:55
  * @Description : 地图页面代码
  */
 import * as netdata from "./netdata";
@@ -51,7 +51,7 @@ Page({
          console.log('客户端基础库版本: '+res.SDKVersion)
        }}) */
 
-       var authUrl = `http://api.189.cn/ChinaTelecom/listFiles.action`;
+    /*    var authUrl = `http://api.189.cn/ChinaTelecom/listFiles.action`;
        wx.request({                                          //网络请求取数据
         url: authUrl,                         //简单地图标记点json文件的网络地址
         success(res) {
@@ -60,7 +60,7 @@ Page({
         fail(res) {
           console.log('错误： ' + res.errMsg)
         }
-      });
+      }); */
   },
 
   /**

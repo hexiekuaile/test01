@@ -1,7 +1,6 @@
 {
   "pages": [    
     "pages/ditu/ditu",
-    "pages/videoxuanchuan/videoxuanchuan",
     "pages/videokepu/videokepu",
     "pages/about/about"
   ],
@@ -21,12 +20,6 @@
         "iconPath": "images/ditu0.png",
         "pagePath": "pages/ditu/ditu",
         "text": "地图"
-      },
-      {
-        "selectedIconPath": "images/xuanchuanpian1.png",
-        "iconPath": "images/xuanchuanpian0.png",
-        "pagePath": "pages/videoxuanchuan/videoxuanchuan",
-        "text": "宣传片"
       },
       {
         "selectedIconPath": "images/kepupian1.png",

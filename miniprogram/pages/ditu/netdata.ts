@@ -21,7 +21,7 @@ interface IMarkersSimple {                                //混合类型的接�
   valuesCallback?: (values: MarkerSimple[]) => void;      //可选的接口的回调方法，
 };
 
-const URL_MARKERSSIMPLE_JSON: string = EXTERNAL_DATA_PATH+"/data/markersSimple.json";//地图标记点的简单信息，仅仅经纬度、名称
+const URL_MARKERSSIMPLE_JSON: string = EXTERNAL_DATA_PATH+"data/markersSimple.json";//地图标记点的简单信息，仅仅经纬度、名称
 
 function getMarkersSimple(): IMarkersSimple {              //接口实现，仅实现了基础方法代码，未实现回调方法，
   let func = <IMarkersSimple>function () {

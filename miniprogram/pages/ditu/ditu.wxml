@@ -1,15 +1,4 @@
-<map
- id="map"
- longitude="{{markersSimple[0].longitude}}"
- latitude="{{markersSimple[0].latitude}}"
- include-points="{{markersSimple}}"
- markers="{{markersSimple}}"
- bindmarkertap="showDialog"
- data-id="{{markers}}"
- bindtap="hideDialog"
- show-location
- style="width: 100%; height: 100%;"
->
+<map id="map" longitude="{{markersSimple[0].longitude}}" latitude="{{markersSimple[0].latitude}}" include-points="{{markersSimple}}" markers="{{markersSimple}}" bindmarkertap="showDialog" data-id="{{markers}}" bindtap="hideDialog" show-location style="width: 100%; height: 100%;">
 	<cover-image class='btn_shuaxin' bindtap="shuaxin" src="/images/shuaxin.png" />
 	<!-- 灰色透明遮罩 -->
 	<!-- <cover-view class="marsk" bindtap="hideDialog" wx:if="{{dialogClass==='dialogUp'}}" /> -->
@@ -30,12 +19,7 @@
 		<cover-view class='person_call_navigation_box'>
 			<cover-image class='person_icon' src='/images/person.png' />
 			<cover-view class='jiedainengli'>接待能力 {{marker.jiedainengli}}人</cover-view>
-			<cover-image
-			 class='call_icon'
-			 data-id="{{marker.tel}}"
-			 src='/images/call.png'
-			 bindtap='calling'
-			/>
+			<cover-image class='call_icon' data-id="{{marker.tel}}" src='/images/call.png' bindtap='calling' />
 			<cover-view class='callnum' data-id="{{marker.tel}}" bindtap='calling'>
 				{{marker.tel}}
 			</cover-view>
@@ -45,15 +29,7 @@
 		<!-- 详细信息图片盒子 -->
 		<cover-view class="danwei_info_pic_box">
 			<cover-view class='danwei_info'>{{marker.info}}</cover-view>
-			<cover-image
-			 wx:for="{{marker.imgsURL}}"
-			 wx:for-item="url"
-			 wx:key="*this"
-			 src="{{url}}"
-			 class="danwei_pic"
-			 style="margin-bottom:20rpx"
-			/>
+			<cover-image wx:for="{{marker.imgsURL}}" wx:for-item="url" wx:key="*this" src="{{url}}" class="danwei_pic" style="margin-bottom:20rpx" />
 		</cover-view>
 	</cover-view>
 </map>
-
